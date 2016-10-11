@@ -52,19 +52,16 @@ do render = ->
 	# ).draw 'silver'
 
 	circle1 = new Circle(100, 100, 50).draw 'silver'
-	circle2 = new Circle(250, 120, 75).draw 'silver'
+	circle2 = new Circle(mouse.x, mouse.y, 75).draw 'silver'
 
+	seg = new Segment(
+		circle1.x, circle1.y
+		circle2.x-circle1.x, circle2.y-circle1.y
+	)
+	seg.draw 2, 'red'
 
-	if circle1.hasPoint mouse.x, mouse.y
+	if seg.getLength() <= circle1.radiusLine.getLength()+circle2.radiusLine.getLength()
 		circle1.draw 'green'
-
-	if circle2.hasPoint mouse.x, mouse.y
 		circle2.draw 'green'
 
-	point = new Point(mouse.x, mouse.y).draw 5, 'orange'
-
-	toMouse1 = new Segment mouse.x, mouse.y, circle1.x-mouse.x, circle1.y-mouse.y
-	toMouse1.draw 2, 'red'
-	toMouse2 = new Segment mouse.x, mouse.y, circle2.x-mouse.x, circle2.y-mouse.y
-	toMouse2.draw 2, 'red'
 	i++
