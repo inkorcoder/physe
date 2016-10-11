@@ -38,9 +38,7 @@ Segment = (x, y, vecx, vecy)->
 		return
 
 	@getLength = ->
-		dx = @x - @x*@vecx
-		dy = @y - @y*@vecy
-		Math.sqrt dx*dx + dy*dy
+		Math.sqrt @vecx*@vecx + @vecy*@vecy
 
 	@getNormal = ->
 		x1 = @y

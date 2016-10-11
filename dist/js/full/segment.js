@@ -36,10 +36,7 @@ Segment = function(x, y, vecx, vecy) {
     ctx.stroke();
   };
   this.getLength = function() {
-    var dx, dy;
-    dx = this.x - this.x * this.vecx;
-    dy = this.y - this.y * this.vecy;
-    return Math.sqrt(dx * dx + dy * dy);
+    return Math.sqrt(this.vecx * this.vecx + this.vecy * this.vecy);
   };
   this.getNormal = function() {
     var x1, x2, y1, y2;
