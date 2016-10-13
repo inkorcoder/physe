@@ -101,7 +101,7 @@ do render = ->
 	rect = new Rectangle 100, 100, 300, 200
 	rect.draw 'blue'
 
-	if rect.hasPoint point.x, point.y
+	if rect.hasPoint point
 		rect.draw 'red'
 
 	i++

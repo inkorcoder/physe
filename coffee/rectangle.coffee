@@ -16,6 +16,15 @@ Rectangle = (x, y, width, height)->
 
 	@hasPoint = (px, py)->
 
+		px = px
+		py = py
+
+		if arguments.length is 1
+			pt = new Point px.x, px.y
+			px = pt.x
+			py = pt.y
+
+
 		if (px >= @x and px <= @x + @width) and (py >= @y and py <= @y + @height)
 			return on
 		return off

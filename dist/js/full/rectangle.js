@@ -13,6 +13,14 @@ Rectangle = function(x, y, width, height) {
     return this;
   };
   this.hasPoint = function(px, py) {
+    var pt;
+    px = px;
+    py = py;
+    if (arguments.length === 1) {
+      pt = new Point(px.x, px.y);
+      px = pt.x;
+      py = pt.y;
+    }
     if ((px >= this.x && px <= this.x + this.width) && (py >= this.y && py <= this.y + this.height)) {
       return true;
     }
