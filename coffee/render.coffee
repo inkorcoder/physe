@@ -51,17 +51,48 @@ do render = ->
 	# 	Math.random() * 100
 	# ).draw 'silver'
 
-	circle1 = new Circle(100, 100, 50).draw 'silver'
-	circle2 = new Circle(mouse.x, mouse.y, 75).draw 'silver'
+	# circle1 = new Circle(100, 100, 50).draw 'silver'
+	# circle2 = new Circle(mouse.x, mouse.y, 75).draw 'silver'
 
-	seg = new Segment(
-		circle1.x, circle1.y
-		circle2.x-circle1.x, circle2.y-circle1.y
+	# seg = new Segment(
+	# 	circle1.x, circle1.y
+	# 	circle2.x-circle1.x, circle2.y-circle1.y
+	# )
+	# seg.draw 2, 'red'
+
+	# if seg.getLength() <= circle1.radiusLine.getLength()+circle2.radiusLine.getLength()
+	# 	circle1.draw 'green'
+	# 	circle2.draw 'green'
+
+	circle1 = new Circle(mouse.x, mouse.y, 50).draw 'silver'
+
+	segment = new Segment 100, 100, 100, 200
+	segment.draw 2, '#000'
+
+	segment2 = new Segment 100, 100, circle1.x-100, circle1.y-100
+	# segment2.draw 2, 'orange'
+
+	point3 = segment2.project segment
+	segment3 = new Segment segment.x, segment.y, point3.x, point3.y
+	# segment3.draw 2, 'green'
+
+
+	segment4 = new Segment(
+		circle1.x, circle1.y,
+		(segment3.x + segment3.vecx) - circle1.x
+		(segment3.y + segment3.vecy) - circle1.y
 	)
-	seg.draw 2, 'red'
+	# segment4.draw 2, '#444'
 
-	if seg.getLength() <= circle1.radiusLine.getLength()+circle2.radiusLine.getLength()
-		circle1.draw 'green'
-		circle2.draw 'green'
+	if circle1.hasPoint segment.x+segment.vecx, segment.y+segment.vecy
+		circle1.draw 'rgba(250,0,0,.5)'
+	else if circle1.hasPoint segment.x, segment.y
+		circle1.draw 'rgba(250,0,0,.5)'
+	else if segment4.getLength() <= circle1.radiusLine.getLength()
+		if segment.getLength() >= segment3.getLength()
+			a = new Vector segment.vecx, segment.vecy
+			b = new Vector segment3.vecx, segment3.vecy
+			if 0 < b.dot a 
+				circle1.draw 'rgba(250,0,0,.5)'
 
 	i++

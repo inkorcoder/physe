@@ -106,4 +106,17 @@ Segment = (x, y, vecx, vecy)->
 		# if line1 and line2 are segments, they intersect if both of the above are true
 		result
 
+	@project = (segmentOnto)->
+
+		vec = new Vector @vecx, @vecy
+		onto = new Vector segmentOnto.vecx, segmentOnto.vecy
+		d = onto.dot onto
+		if d > 0
+			dp = vec.dot onto
+			multiplier = dp / d
+			rx = onto.x * multiplier
+			ry = onto.y * multiplier
+			return new Point rx, ry
+		return new Point 0, 0
+
 	return

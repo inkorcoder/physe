@@ -95,4 +95,18 @@ Segment = function(x, y, vecx, vecy) {
     }
     return result;
   };
+  this.project = function(segmentOnto) {
+    var d, dp, multiplier, onto, rx, ry, vec;
+    vec = new Vector(this.vecx, this.vecy);
+    onto = new Vector(segmentOnto.vecx, segmentOnto.vecy);
+    d = onto.dot(onto);
+    if (d > 0) {
+      dp = vec.dot(onto);
+      multiplier = dp / d;
+      rx = onto.x * multiplier;
+      ry = onto.y * multiplier;
+      return new Point(rx, ry);
+    }
+    return new Point(0, 0);
+  };
 };
