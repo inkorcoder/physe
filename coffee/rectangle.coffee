@@ -29,4 +29,10 @@ Rectangle = (x, y, width, height)->
 			return on
 		return off
 
+	@hasRect = (rect)->
+		if (@x < rect.x + rect.width) and (@x + @width > rect.x) and
+				(@y < rect.y + rect.height) and (@y + @height > rect.y)
+			return on
+		return off
+
 	return @

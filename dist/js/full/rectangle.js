@@ -26,5 +26,11 @@ Rectangle = function(x, y, width, height) {
     }
     return false;
   };
+  this.hasRect = function(rect) {
+    if ((this.x < rect.x + rect.width) && (this.x + this.width > rect.x) && (this.y < rect.y + rect.height) && (this.y + this.height > rect.y)) {
+      return true;
+    }
+    return false;
+  };
   return this;
 };
